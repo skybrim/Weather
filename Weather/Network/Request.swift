@@ -11,7 +11,7 @@ import Foundation
 let key = "34eec3e24636a4064dfe21d389892d10"
 
 struct WeatherRequest<T: Codable & Parsable>: CodableRequestProtocol {
-    
+
     typealias Location = (latitude: Double, longitude: Double)
 
     var host: String = "https://api.darksky.net/forecast/"
@@ -20,9 +20,9 @@ struct WeatherRequest<T: Codable & Parsable>: CodableRequestProtocol {
     }
     var location: Location
     var method: HTTPMethod = .GET
-    var parameters: [String : Any]? = nil
-    var headers: [String : String]? = nil
-    
+    var parameters: [String: Any]?
+    var headers: [String: String]?
+
     typealias Response = T
-    
+
 }

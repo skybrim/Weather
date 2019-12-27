@@ -13,7 +13,7 @@ struct WeatherClient: ClientProtocol {
     /// # Singleton
     static let shared = WeatherClient()
     private init() {}
-    
+
     func send<T: RequestProtocol>(_ request: T, handler: @escaping (Swift.Result<T.Response, Error>) -> Void) {
         guard let url = URL(string: request.host + request.path) else {
             return

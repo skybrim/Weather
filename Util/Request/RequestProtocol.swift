@@ -22,15 +22,13 @@ public enum HTTPMethod: String {
 public protocol RequestProtocol {
     // 关联类型
     associatedtype Response: Parsable
-    
+
     var host: String { get }
     var path: String { get }
-    
+
     var method: HTTPMethod { get }
     var parameters: [String: Any]? { get }
     var headers: [String: String]? { get }
 }
 
-public protocol CodableRequestProtocol: RequestProtocol where Self.Response: Decodable {
-    
-}
+public protocol CodableRequestProtocol: RequestProtocol where Self.Response: Decodable {}

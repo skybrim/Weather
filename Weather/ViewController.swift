@@ -13,9 +13,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+
         let shenzhen = City(name: "shenzhen", latitude: 22.5431, longitude: 114.0579)
-        
+
         let request = WeatherRequest<Weather>(location:
             (latitude: shenzhen.latitude,
              longitude: shenzhen.longitude)
@@ -28,7 +28,5 @@ class ViewController: UIViewController {
                 dump(error)
             }
         }
-        
     }
 }
-

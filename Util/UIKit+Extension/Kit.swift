@@ -17,5 +17,3 @@ open class NiblessView: UIView {
         fatalError("loading this view from a nib is unsupported")
     }
 }
-
-

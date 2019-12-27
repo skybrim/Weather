@@ -8,11 +8,10 @@
 
 import Foundation
 
-
-struct Weather: Parsable, Codable  {
+struct Weather: Parsable, Codable {
 
     var latitude: Double
     var longitude: Double
     var timezone: String
-    
+
 }
