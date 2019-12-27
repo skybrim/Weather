@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - request
 /// # HTTP 方法枚举
-enum HTTPMethod: String {
+public enum HTTPMethod: String {
     case GET // 获取资源
     case POST // 传输实体主体
     case HEAD // 获得报文头部
@@ -19,7 +19,7 @@ enum HTTPMethod: String {
 }
 
 /// # 发起请求遵循 Request 协议
-protocol RequestProtocol {
+public protocol RequestProtocol {
     // 关联类型
     associatedtype Response: Parsable
     
@@ -31,6 +31,6 @@ protocol RequestProtocol {
     var headers: [String: String]? { get }
 }
 
-protocol CodableRequestProtocol: RequestProtocol where Self.Response: Decodable {
+public protocol CodableRequestProtocol: RequestProtocol where Self.Response: Decodable {
     
 }

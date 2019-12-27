@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Parse
-protocol Parsable {
+public protocol Parsable {
     static func parse(data: Data) -> Result<Self, Error>
 }
 
@@ -18,7 +18,7 @@ protocol Parsable {
 extension Array: Parsable where Array.Element: (Parsable & Decodable) {}
 
 /// 同时遵循 Decodable 和 Parsable ，扩展方法
-extension Parsable where Self: Decodable {
+public extension Parsable where Self: Decodable {
     static func parse(data: Data) -> Result<Self, Error> {
         do {
             let model = try JSONDecoder().decode(Self.self, from: data)

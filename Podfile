@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
+platform :ios, '12.2'
 
-source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Util' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -20,13 +20,15 @@ target 'Weather' do
   use_frameworks!
 
   # Pods for Weather
-  pod 'Alamofire'
-  pod 'RxSwift'
-  pod 'RxCocoa'
+  pod 'Alamofire', '~> 5.0.0-rc.3'
+  pod 'RxBlocking', '~> 5'
+  pod 'RxTest', '~> 5'
   
   target 'WeatherTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RxBlocking', '~> 5'
+    pod 'RxTest', '~> 5'
   end
 
   target 'WeatherUITests' do
