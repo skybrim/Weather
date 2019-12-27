@@ -14,8 +14,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        let shenzhen = City(name: "shenzhen", latitude: 22.5431, longitude: 114.0579)
+        
+        let request = WeatherRequest<Weather>(location:
+            (latitude: shenzhen.latitude,
+             longitude: shenzhen.longitude)
+        )
+        WeatherClient.shared.send(request) { (result) in
+            switch result {
+            case .success(let model):
+                dump(model)
+            case .failure(let error):
+                dump(error)
+            }
+        }
+        
     }
-
-
 }
 
