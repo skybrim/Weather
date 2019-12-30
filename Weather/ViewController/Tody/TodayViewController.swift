@@ -64,8 +64,21 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - City Info
     private func geocodeCityInfo() {
+        guard let currentLocation = currentLocation else { return }
         
+        CLGeocoder().reverseGeocodeLocation(currentLocation)
+        {(placemarks, error) in
+            if let error = error {
+                dump(error)
+                return
+            }
+            if let city = placemarks?.first?.locality,
+                let street = placemarks?.first?.thoroughfare {
+                print(city, street)
+            }
+        }
     }
+    
     // MARK: - Weather Info
     private func requestWeatherInfo() {
         
