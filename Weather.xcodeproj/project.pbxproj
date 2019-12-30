@@ -35,7 +35,6 @@
 		B868D22923B5AF5D00902BBD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D22823B5AF5D00902BBD /* Request.swift */; };
 		B868D22B23B5B13400902BBD /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D22A23B5B13400902BBD /* Weather.swift */; };
 		B868D22D23B5B66200902BBD /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D22C23B5B66200902BBD /* Client.swift */; };
-		B8CA8BC523B995BB0035E92A /* Weather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8CA8BC423B995BB0035E92A /* Weather.ttf */; };
 		B8CA8BC923B998220035E92A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA8BC823B998220035E92A /* Color.swift */; };
 		B8CA8BCB23B9982D0035E92A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA8BCA23B9982D0035E92A /* Font.swift */; };
 /* End PBXBuildFile section */
@@ -132,7 +131,6 @@
 		B868D22823B5AF5D00902BBD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		B868D22A23B5B13400902BBD /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		B868D22C23B5B66200902BBD /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
-		B8CA8BC423B995BB0035E92A /* Weather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Weather.ttf; sourceTree = "<group>"; };
 		B8CA8BC823B998220035E92A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B8CA8BCA23B9982D0035E92A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		BC73ECE6D17CF04098DF94B3 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 		B836450123B5F82300941F0D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B8CA8BC423B995BB0035E92A /* Weather.ttf */,
 				B868D1C723B5987F00902BBD /* Assets.xcassets */,
 				B868D1C923B5987F00902BBD /* LaunchScreen.storyboard */,
 			);
@@ -555,7 +552,6 @@
 			files = (
 				B868D1CB23B5987F00902BBD /* LaunchScreen.storyboard in Resources */,
 				B868D1C823B5987F00902BBD /* Assets.xcassets in Resources */,
-				B8CA8BC523B995BB0035E92A /* Weather.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

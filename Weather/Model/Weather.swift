@@ -13,5 +13,6 @@ struct Weather: Parsable, Codable {
     var latitude: Double
     var longitude: Double
     var timezone: String
-
+    
+//    static let empty = 
 }

@@ -14,4 +14,5 @@ struct City {
     var latitude: Double
     var longitude: Double
 
+    static let unknow = City(name: "_ _", latitude: 0, longitude: 0)
 }
