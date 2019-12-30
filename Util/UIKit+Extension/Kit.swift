@@ -18,7 +18,6 @@ open class NiblessView: UIView {
     public required init?(coder: NSCoder) {
         fatalError("loading this view from a nib is unsupported")
     }
-    
 }
 
 extension UIColor {
@@ -30,6 +29,16 @@ extension UIColor {
         let blue = CGFloat(((rgb & 0xff))) / 255.0
         
         self.init(red: red, green: green, blue: blue, alpha: alpha)
-        
+    }
+}
+
+extension CGFloat {
+    
+    public static var screenWidth: CGFloat {
+        UIScreen.main.bounds.width
+    }
+    
+    public static var screenHeight: CGFloat {
+        UIScreen.main.bounds.height
     }
 }

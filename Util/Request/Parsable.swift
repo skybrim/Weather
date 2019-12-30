@@ -19,6 +19,7 @@ extension Array: Parsable where Array.Element: (Parsable & Decodable) {}
 
 /// 同时遵循 Decodable 和 Parsable ，扩展方法
 public extension Parsable where Self: Decodable {
+    
     static func parse(data: Data) -> Result<Self, Error> {
         do {
             let model = try JSONDecoder().decode(Self.self, from: data)

@@ -8,6 +8,8 @@
 
 import UIKit
 @_exported import Util
+@_exported import RxSwift
+@_exported import RxCocoa
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = TodyViewController()
+        window?.rootViewController = TodayViewController()
         window?.makeKeyAndVisible()
 
         return true

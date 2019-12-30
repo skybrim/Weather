@@ -4,5 +4,7 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - WeatherTests
   - WeatherUITests
   - UtilTests
+  - Weather/Tools/Extension/CLLocationManager+Rx.swift
+  - Weather/Tools/Extension/RxCLLocationManagerDelegateProxy.swift
 disabled_rules:
   - trailing_whitespace

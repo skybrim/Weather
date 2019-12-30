@@ -23,6 +23,7 @@ struct Weather: Parsable, Codable {
 }
 
 struct Currently: Codable {
+    
     var icon: String
     var time: TimeInterval
     var summary: String
