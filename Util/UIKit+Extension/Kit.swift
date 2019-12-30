@@ -9,11 +9,27 @@
 import UIKit
 
 open class NiblessView: UIView {
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
     }
+    
     @available(*, unavailable, message: "loading this view from a nib is unsupported")
     public required init?(coder: NSCoder) {
         fatalError("loading this view from a nib is unsupported")
+    }
+    
+}
+
+extension UIColor {
+
+    public convenience init(rgb: Int, alpha: CGFloat = 1) {
+        
+        let red = CGFloat(((rgb & 0xff0000) >> 16)) / 255.0
+        let green = CGFloat(((rgb & 0xff00) >> 8)) / 255.0
+        let blue = CGFloat(((rgb & 0xff))) / 255.0
+        
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+        
     }
 }
