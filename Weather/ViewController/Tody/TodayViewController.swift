@@ -66,15 +66,14 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     private func geocodeCityInfo() {
         guard let currentLocation = currentLocation else { return }
         
-        CLGeocoder().reverseGeocodeLocation(currentLocation)
-        {(placemarks, error) in
+        CLGeocoder().reverseGeocodeLocation(currentLocation) { (placemarks, error) in
             if let error = error {
                 dump(error)
                 return
             }
             if let city = placemarks?.first?.locality,
-                let street = placemarks?.first?.thoroughfare {
-                print(city, street)
+                let districtAndCounty = placemarks?.first?.subLocality {
+                print(city + districtAndCounty)
             }
         }
     }
