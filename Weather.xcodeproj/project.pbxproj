@@ -35,6 +35,7 @@
 		B868D22923B5AF5D00902BBD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D22823B5AF5D00902BBD /* Request.swift */; };
 		B868D22B23B5B13400902BBD /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D22A23B5B13400902BBD /* Weather.swift */; };
 		B868D22D23B5B66200902BBD /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D22C23B5B66200902BBD /* Client.swift */; };
+		B884737223BA5388002868E0 /* TodyCurrentlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884737123BA5388002868E0 /* TodyCurrentlyView.swift */; };
 		B8CA8BC923B998220035E92A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA8BC823B998220035E92A /* Color.swift */; };
 		B8CA8BCB23B9982D0035E92A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA8BCA23B9982D0035E92A /* Font.swift */; };
 		B8CA8BCD23B9D6340035E92A /* WeatherIcon.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8CA8BCC23B9D6340035E92A /* WeatherIcon.plist */; };
@@ -135,6 +136,7 @@
 		B868D22823B5AF5D00902BBD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		B868D22A23B5B13400902BBD /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		B868D22C23B5B66200902BBD /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		B884737123BA5388002868E0 /* TodyCurrentlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodyCurrentlyView.swift; sourceTree = "<group>"; };
 		B8CA8BC823B998220035E92A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B8CA8BCA23B9982D0035E92A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		B8CA8BCC23B9D6340035E92A /* WeatherIcon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WeatherIcon.plist; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				B868D1C223B5987C00902BBD /* TodayViewController.swift */,
+				B884737123BA5388002868E0 /* TodyCurrentlyView.swift */,
 				B8CA8C1323B9F47A0035E92A /* CurrentlyViewModel.swift */,
 			);
 			path = Tody;
@@ -809,6 +812,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B868D1C323B5987C00902BBD /* TodayViewController.swift in Sources */,
+				B884737223BA5388002868E0 /* TodyCurrentlyView.swift in Sources */,
 				B868D22923B5AF5D00902BBD /* Request.swift in Sources */,
 				B8CA8BC923B998220035E92A /* Color.swift in Sources */,
 				B8CA8C1123B9ECAA0035E92A /* RxCLLocationManagerDelegateProxy.swift in Sources */,
