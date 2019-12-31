@@ -39,7 +39,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
         NotificationCenter.default
             .rx
             .notification(UIApplication.didBecomeActiveNotification)
-            .subscribe({_ in
+            .subscribe(onNext: {_ in
                 self.requestLocation()
             })
             .disposed(by: bag)
@@ -80,6 +80,19 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Weather Info
     private func requestWeatherInfo() {
-        
+        guard let currentLocation = currentLocation else { return }
+
+        let request = WeatherRequest<Weather>(
+            location: (latitude: currentLocation.coordinate.latitude,
+                       longitude: currentLocation.coordinate.longitude)
+        )
+        WeatherClient.shared.send(request) { result in
+            switch result {
+            case .success(let weather):
+                dump(weather)
+            case .failure(let error):
+                dump(error)
+            }
+        }
     }
 }
