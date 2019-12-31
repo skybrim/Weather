@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct CurrentlyWeatherViewModel {
+    var weather: Weather
+    
+    static let empty = CurrentlyWeatherViewModel(weather: .empty)
+}

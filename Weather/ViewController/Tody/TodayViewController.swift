@@ -27,6 +27,13 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    private var currentlyView = CurrentlyView()
+    
+    private var currentlyCity: BehaviorRelay<CurrentlyCityViewModel> =
+        BehaviorRelay(value: .unkonw)
+    private var currentlyWeather: BehaviorRelay<CurrentlyWeatherViewModel> =
+        BehaviorRelay(value: .empty)
+    
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +76,19 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
         CLGeocoder().reverseGeocodeLocation(currentLocation) { (placemarks, error) in
             if let error = error {
                 dump(error)
+                self.currentlyCity
+                    .accept(CurrentlyCityViewModel.unkonw)
                 return
             }
             if let city = placemarks?.first?.locality,
-                let districtAndCounty = placemarks?.first?.subLocality {
-                print(city + districtAndCounty)
+                let district = placemarks?.first?.subLocality {
+                print(city + district)
+                let cityModel = City(city: city,
+                                     district: district,
+                                     latitude: currentLocation.coordinate.latitude,
+                                     longitude: currentLocation.coordinate.longitude)
+                self.currentlyCity
+                    .accept(CurrentlyCityViewModel(city: cityModel))
             }
         }
     }

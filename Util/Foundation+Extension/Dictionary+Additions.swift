@@ -10,12 +10,12 @@ import Foundation
 
 extension Dictionary {
     
-    mutating func merge<S: Sequence>(_ sequence: S)
+    public mutating func merge<S: Sequence>(_ sequence: S)
         where S.Iterator.Element == (key: Key, value: Value) {
             sequence.forEach { self[$0] = $1 }
     }
     
-    init<S: Sequence>(_ sequence: S)
+    public init<S: Sequence>(_ sequence: S)
         where S.Iterator.Element == (key: Key, value: Value) {
             self = [:]
             self.merge(sequence)

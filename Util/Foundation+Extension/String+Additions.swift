@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     /// # 注意性能问题，此下标取值时间复杂度是O(n)
-    subscript(index: Int) -> Character {
+    public subscript(index: Int) -> Character {
         guard let stringIndex = self.index(self.startIndex, offsetBy: index, limitedBy: self.endIndex) else {
             fatalError("String index out of range")
         }

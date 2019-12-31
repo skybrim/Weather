@@ -16,15 +16,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_ _" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqP-IR-01L">
-                                <rect key="frame" x="0.0" y="44" width="414" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Ft9-s4-Hoc"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="44" width="414" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.max.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pNk-gW-nMA">
-                                <rect key="frame" x="157" y="138.5" width="100" height="100.5"/>
+                                <rect key="frame" x="157" y="134.5" width="100" height="100.5"/>
                                 <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Dk6-QB-opn"/>
@@ -32,13 +29,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_ _ _ _ _ _" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohc-l9-dhS">
-                                <rect key="frame" x="156.5" y="289" width="101" height="34"/>
+                                <rect key="frame" x="0.0" y="285" width="414" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="STl-Uj-sz1">
-                                <rect key="frame" x="0.0" y="331" width="414" height="531"/>
+                                <rect key="frame" x="0.0" y="327" width="414" height="535"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LaunchCell" id="v2c-E6-MDm">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -57,12 +54,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="STl-Uj-sz1" secondAttribute="bottom" id="F3D-tR-3Th"/>
                             <constraint firstItem="pNk-gW-nMA" firstAttribute="top" secondItem="hqP-IR-01L" secondAttribute="bottom" constant="50" id="KRa-uJ-CjJ"/>
                             <constraint firstItem="hqP-IR-01L" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KjS-eK-ivd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ohc-l9-dhS" secondAttribute="trailing" id="Lrm-kk-R6g"/>
                             <constraint firstItem="STl-Uj-sz1" firstAttribute="top" secondItem="Ohc-l9-dhS" secondAttribute="bottom" constant="8" id="S9j-l0-lag"/>
                             <constraint firstItem="STl-Uj-sz1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SCH-Ek-oZL"/>
                             <constraint firstItem="pNk-gW-nMA" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="byx-zs-0xD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hqP-IR-01L" secondAttribute="trailing" id="ed3-mK-Stw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="STl-Uj-sz1" secondAttribute="trailing" id="gbq-Ia-wHE"/>
-                            <constraint firstItem="Ohc-l9-dhS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vmN-D5-zP4"/>
+                            <constraint firstItem="Ohc-l9-dhS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rzg-DT-OnK"/>
                             <constraint firstItem="Ohc-l9-dhS" firstAttribute="top" secondItem="pNk-gW-nMA" secondAttribute="bottom" constant="50" id="wiW-tf-abL"/>
                             <constraint firstItem="hqP-IR-01L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="x1u-S4-PZt"/>
                         </constraints>
