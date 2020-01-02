@@ -20,12 +20,23 @@ struct Weather: Parsable, Codable {
     static let empty = Weather(latitude: City.unknow.latitude,
                                longitude: City.unknow.longitude,
                                currently: Currently.empty)
+    
+    static func parse(data: Data) -> Result<Self, Error> {
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .secondsSince1970
+            let model = try decoder.decode(Self.self, from: data)
+            return .success(model)
+        } catch {
+            return .failure(error)
+        }
+    }
 }
 
 struct Currently: Codable {
     
     var icon: String
-    var time: TimeInterval
+    var time: Date
     var summary: String
     var humidity: Double
     var pressure: Double
@@ -37,7 +48,7 @@ struct Currently: Codable {
     var apparentTemperature: Double
     
     static let empty = Currently(icon: "smiley",
-                                 time: Date().timeIntervalSince1970,
+                                 time: Date(),
                                  summary: "Fine",
                                  humidity: 0,
                                  pressure: 0,

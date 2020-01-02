@@ -16,10 +16,10 @@ struct CurrentlyViewModel {
     private let currentlyCity: Observable<City>
         
     init(initialCity: City = City.unknow, initialWeather: Weather = Weather.empty) {
-        city = BehaviorRelay(value: initialCity)
-        currentlyCity = city.asObservable()
         weather = BehaviorRelay(value: initialWeather)
+        city = BehaviorRelay(value: initialCity)
         currentlyWeather = weather.asObservable()
+        currentlyCity = city.asObservable()
     }
     
     var name: Observable<String> {
@@ -33,6 +33,14 @@ struct CurrentlyViewModel {
             let iconDictionary = self.iconDictionry()
             let iconName = iconDictionary[weather.currently.icon] ?? "smiley"
             return UIImage(systemName: iconName)!
+        }
+    }
+    
+    var time: Observable<String> {
+        return currentlyWeather.map {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "E, dd MMMM"
+            return formatter.string(from: $0.currently.time)
         }
     }
 }

@@ -12,24 +12,20 @@ import CoreLocation
 class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: -
     private let bag = DisposeBag()
-    
-    private lazy var locationManager: CLLocationManager = {
-       let manager = CLLocationManager()
-        manager.distanceFilter = 1000
-        manager.desiredAccuracy = 1000
-        return manager
-    }()
-    
+    private var currentlyView = CurrentlyView()
+    private var viewModel = CurrentlyViewModel()
     private var currentLocation: CLLocation? {
         didSet {
             geocodeCityInfo()
             requestWeatherInfo()
         }
     }
-    
-    private var currentlyView = CurrentlyView()
-    
-    private var viewModel = CurrentlyViewModel()
+    private lazy var locationManager: CLLocationManager = {
+       let manager = CLLocationManager()
+        manager.distanceFilter = 1000
+        manager.desiredAccuracy = 1000
+        return manager
+    }()
     
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
@@ -52,6 +48,9 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
             .disposed(by: bag)
         viewModel.iconImage
             .bind(to: currentlyView.iconImageView.rx.image)
+            .disposed(by: bag)
+        viewModel.time
+            .bind(to: currentlyView.timeLabel.rx.text)
             .disposed(by: bag)
     }
     
