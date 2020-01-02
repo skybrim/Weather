@@ -9,7 +9,17 @@
 import Foundation
 
 struct CurrentlyCityViewModel {
-    var city: City
+    let city: BehaviorRelay<City>
+    private let currentlyCity: Observable<City>
+        
+    init(initialCity: City = City.unknow) {
+        city = BehaviorRelay(value: initialCity)
+        currentlyCity = city.asObservable().share(replay: 1)
+    }
     
-    static let unkonw = CurrentlyCityViewModel(city: .unknow)
+    var name: Observable<String> {
+        return currentlyCity.map {
+            return $0.name + ($0.district ?? "")
+        }
+    }
 }

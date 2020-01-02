@@ -29,10 +29,8 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     
     private var currentlyView = CurrentlyView()
     
-    private var currentlyCity: BehaviorRelay<CurrentlyCityViewModel> =
-        BehaviorRelay(value: .unkonw)
-    private var currentlyWeather: BehaviorRelay<CurrentlyWeatherViewModel> =
-        BehaviorRelay(value: .empty)
+    private var cityViewModel = CurrentlyCityViewModel()
+    private var weatherViewModel = CurrentlyWeatherViewModel()
     
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
@@ -88,19 +86,16 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
         CLGeocoder().reverseGeocodeLocation(currentLocation) { (placemarks, error) in
             if let error = error {
                 dump(error)
-                self.currentlyCity
-                    .accept(CurrentlyCityViewModel.unkonw)
                 return
             }
             if let city = placemarks?.first?.locality,
                 let district = placemarks?.first?.subLocality {
                 print(city + district)
-                let cityModel = City(city: city,
+                let cityModel = City(name: city,
                                      district: district,
                                      latitude: currentLocation.coordinate.latitude,
                                      longitude: currentLocation.coordinate.longitude)
-                self.currentlyCity
-                    .accept(CurrentlyCityViewModel(city: cityModel))
+                self.cityViewModel.city.accept(cityModel)
             }
         }
     }
@@ -125,18 +120,9 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - bind
     func bindDataToView() {
-        currentlyCity
-            .map { $0.city.city }
+        cityViewModel.name
             .bind(to: currentlyView.cityLabel.rx.text)
             .disposed(by: bag)
-//        currentlyCity
-//            .map { $0.city.district }
-//            .bind(to: currentlyView.cityLabel.rx.text)
-//            .disposed(by: bag)
-//        currentlyCity
-//            .map { $0.city.city }
-//            .bind(to: currentlyView.cityLabel.rx.text)
-//            .disposed(by: bag)
     }
 }
 

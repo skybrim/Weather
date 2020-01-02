@@ -9,7 +9,11 @@
 import Foundation
 
 struct CurrentlyWeatherViewModel {
-    var weather: Weather
+    let weather: BehaviorRelay<Weather>
+    private let currentlyWeather: Observable<Weather>
     
-    static let empty = CurrentlyWeatherViewModel(weather: .empty)
+    init(initialWeather: Weather = Weather.empty) {
+        weather = BehaviorRelay(value: initialWeather)
+        currentlyWeather = weather.asObservable().share(replay: 1)
+    }
 }

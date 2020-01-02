@@ -10,10 +10,10 @@ import Foundation
 
 struct City {
 
-    var city: String
-    var district: String
+    var name: String
+    var district: String?
     var latitude: Double
     var longitude: Double
 
-    static let unknow = City(city: " _ ", district: " _ ", latitude: 0, longitude: 0)
+    static let unknow = City(name: " _ ", district: " _ ", latitude: 0, longitude: 0)
 }
