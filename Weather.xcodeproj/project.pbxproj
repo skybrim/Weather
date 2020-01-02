@@ -15,6 +15,7 @@
 		B827C5D923BB2249002C7934 /* CurrentlyCityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B827C5D823BB2249002C7934 /* CurrentlyCityViewModel.swift */; };
 		B827C5DB23BB23DA002C7934 /* Double+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B827C5DA23BB23DA002C7934 /* Double+Additions.swift */; };
 		B836450323B5F8A500941F0D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B836450223B5F8A500941F0D /* City.swift */; };
+		B83AADE823BD9957009F7B95 /* Dictionry+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AADE723BD9956009F7B95 /* Dictionry+Addition.swift */; };
 		B868D1BF23B5987C00902BBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D1BE23B5987C00902BBD /* AppDelegate.swift */; };
 		B868D1C323B5987C00902BBD /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D1C223B5987C00902BBD /* TodayViewController.swift */; };
 		B868D1C823B5987F00902BBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B868D1C723B5987F00902BBD /* Assets.xcassets */; };
@@ -111,6 +112,7 @@
 		B827C5DA23BB23DA002C7934 /* Double+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Additions.swift"; sourceTree = "<group>"; };
 		B83644FA23B5F6AA00941F0D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B836450223B5F8A500941F0D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		B83AADE723BD9956009F7B95 /* Dictionry+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionry+Addition.swift"; sourceTree = "<group>"; };
 		B868D1BB23B5987C00902BBD /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B868D1BE23B5987C00902BBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B868D1C223B5987C00902BBD /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				B8CA8C0E23B9ECAA0035E92A /* CLLocationManager+Rx.swift */,
 				B8CA8C0F23B9ECAA0035E92A /* RxCLLocationManagerDelegateProxy.swift */,
 				B827C5DA23BB23DA002C7934 /* Double+Additions.swift */,
+				B83AADE723BD9956009F7B95 /* Dictionry+Addition.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -831,6 +834,7 @@
 				B827C5D923BB2249002C7934 /* CurrentlyCityViewModel.swift in Sources */,
 				B8CA8C1423B9F47A0035E92A /* CurrentlyWeatherViewModel.swift in Sources */,
 				B868D22B23B5B13400902BBD /* Weather.swift in Sources */,
+				B83AADE823BD9957009F7B95 /* Dictionry+Addition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,11 +18,12 @@ class CurrentlyView: UIView {
     }()
     var iconImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.tintColor = UIColor.systemOrange
         return imageView
     }()
     var timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textColor = UIColor.label
         return label
     }()
@@ -51,29 +52,33 @@ class CurrentlyView: UIView {
 
 extension CurrentlyView {
     func activeConstraintsCityLabel() {
+        cityLabel.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint
         .activate([
-            cityLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            cityLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            cityLabel.topAnchor.constraint(equalTo: self.topAnchor)
+            cityLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            cityLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
-    
+
     func activeConstraintsIconImageView() {
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint
         .activate([
-            iconImageView.heightAnchor.constraint(equalToConstant: 100),
-            iconImageView.widthAnchor.constraint(equalToConstant: 100),
+            iconImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
+            iconImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: 100),
             iconImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             iconImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
     }
-    
+
     func activeConstraintsTimeLabel() {
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint
         .activate([
-            timeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            timeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            timeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             timeLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }

@@ -38,7 +38,19 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // request location when application active
+        constructSubview()
+        activeConstraints()
         applicationActiveNotification()
+        bindDataToView()
+    }
+    
+    // MARK: - subviews
+    func constructSubview() {
+        view.addSubview(currentlyView)
+    }
+    
+    func activeConstraints() {
+        activeConstraintsCurrentlyView()
     }
     
     // MARK: - Location
@@ -109,5 +121,34 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
                 dump(error)
             }
         }
+    }
+    
+    // MARK: - bind
+    func bindDataToView() {
+        currentlyCity
+            .map { $0.city.city }
+            .bind(to: currentlyView.cityLabel.rx.text)
+            .disposed(by: bag)
+//        currentlyCity
+//            .map { $0.city.district }
+//            .bind(to: currentlyView.cityLabel.rx.text)
+//            .disposed(by: bag)
+//        currentlyCity
+//            .map { $0.city.city }
+//            .bind(to: currentlyView.cityLabel.rx.text)
+//            .disposed(by: bag)
+    }
+}
+
+extension TodayViewController {
+    func activeConstraintsCurrentlyView() {
+        currentlyView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            currentlyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            currentlyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            currentlyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            currentlyView.heightAnchor.constraint(equalToConstant: 300)
+        ])
+        
     }
 }
