@@ -30,21 +30,32 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
     private var currentlyView = CurrentlyView()
     
     private var viewModel = CurrentlyViewModel()
-//    private var cityViewModel = CurrentlyCityViewModel()
-//    private var weatherViewModel = CurrentlyWeatherViewModel()
     
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // request location when application active
         view.backgroundColor = UIColor.systemBackground
+        // view
         constructSubview()
         activeConstraints()
+        // model
         applicationActiveNotification()
-        bindDataToView()
+        // bind
+        bindData()
     }
     
-    // MARK: - subviews
+    // MARK: - bind
+    func bindData() {
+        viewModel.name
+            .bind(to: currentlyView.cityLabel.rx.text)
+            .disposed(by: bag)
+        viewModel.iconImage
+            .bind(to: currentlyView.iconImageView.rx.image)
+            .disposed(by: bag)
+    }
+    
+    // MARK: - views
     func constructSubview() {
         view.addSubview(currentlyView)
     }
@@ -53,7 +64,7 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
         activeConstraintsCurrentlyView()
     }
     
-    // MARK: - Location
+    // MARK: - Models
     private func applicationActiveNotification() {
         NotificationCenter.default
             .rx
@@ -80,7 +91,6 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - City Info
     private func geocodeCityInfo() {
         guard let currentLocation = currentLocation else { return }
         
@@ -100,7 +110,6 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - Weather Info
     private func requestWeatherInfo() {
         guard let currentLocation = currentLocation else { return }
 
@@ -116,16 +125,6 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
                 dump(error)
             }
         }
-    }
-    
-    // MARK: - bind
-    func bindDataToView() {
-        viewModel.name
-            .bind(to: currentlyView.cityLabel.rx.text)
-            .disposed(by: bag)
-        viewModel.iconImage
-            .bind(to: currentlyView.iconImageView.rx.image)
-            .disposed(by: bag)
     }
 }
 
