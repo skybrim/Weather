@@ -36,7 +36,7 @@ struct Currently: Codable {
     var precipProbability: Double
     var apparentTemperature: Double
     
-    static let empty = Currently(icon: "sun",
+    static let empty = Currently(icon: "smiley",
                                  time: Date().timeIntervalSince1970,
                                  summary: "Fine",
                                  humidity: 0,

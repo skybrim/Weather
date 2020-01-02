@@ -18,7 +18,7 @@ class CurrentlyView: UIView {
     }()
     var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = UIColor.systemOrange
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     var timeLabel: UILabel = {
@@ -53,7 +53,6 @@ class CurrentlyView: UIView {
 extension CurrentlyView {
     func activeConstraintsCityLabel() {
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint
         .activate([
             cityLabel.topAnchor.constraint(equalTo: self.topAnchor),
@@ -63,7 +62,6 @@ extension CurrentlyView {
 
     func activeConstraintsIconImageView() {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint
         .activate([
             iconImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
@@ -75,7 +73,6 @@ extension CurrentlyView {
 
     func activeConstraintsTimeLabel() {
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint
         .activate([
             timeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),

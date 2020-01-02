@@ -22,5 +22,7 @@
 	<string>cloud.snow.fill</string>
 	<key>wind</key>
 	<string>wind</string>
+	<key>smiley</key>
+	<string>smiley</string>
 </dict>
 </plist>

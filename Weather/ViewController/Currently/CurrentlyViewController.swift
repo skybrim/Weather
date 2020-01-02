@@ -1,5 +1,5 @@
 //
-//  TodayViewController.swift
+//  CurrentlyViewController.swift
 //  Weather
 //
 //  Created by wiley on 2019/12/27.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class TodayViewController: UIViewController, CLLocationManagerDelegate {
+class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: -
     private let bag = DisposeBag()
     
@@ -29,13 +29,15 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     
     private var currentlyView = CurrentlyView()
     
-    private var cityViewModel = CurrentlyCityViewModel()
-    private var weatherViewModel = CurrentlyWeatherViewModel()
+    private var viewModel = CurrentlyViewModel()
+//    private var cityViewModel = CurrentlyCityViewModel()
+//    private var weatherViewModel = CurrentlyWeatherViewModel()
     
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // request location when application active
+        view.backgroundColor = UIColor.systemBackground
         constructSubview()
         activeConstraints()
         applicationActiveNotification()
@@ -63,7 +65,6 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func requestLocation() {
-        
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.startUpdatingLocation()
             locationManager
@@ -88,14 +89,13 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
                 dump(error)
                 return
             }
-            if let city = placemarks?.first?.locality,
+            if let name = placemarks?.first?.locality,
                 let district = placemarks?.first?.subLocality {
-                print(city + district)
-                let cityModel = City(name: city,
+                let cityModel = City(name: name,
                                      district: district,
                                      latitude: currentLocation.coordinate.latitude,
                                      longitude: currentLocation.coordinate.longitude)
-                self.cityViewModel.city.accept(cityModel)
+                self.viewModel.city.accept(cityModel)
             }
         }
     }
@@ -111,7 +111,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
         WeatherClient.shared.send(request) { result in
             switch result {
             case .success(let weather):
-                dump(weather)
+                self.viewModel.weather.accept(weather)
             case .failure(let error):
                 dump(error)
             }
@@ -120,13 +120,16 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - bind
     func bindDataToView() {
-        cityViewModel.name
+        viewModel.name
             .bind(to: currentlyView.cityLabel.rx.text)
+            .disposed(by: bag)
+        viewModel.iconImage
+            .bind(to: currentlyView.iconImageView.rx.image)
             .disposed(by: bag)
     }
 }
 
-extension TodayViewController {
+extension CurrentlyViewController {
     func activeConstraintsCurrentlyView() {
         currentlyView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -135,6 +138,5 @@ extension TodayViewController {
             currentlyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             currentlyView.heightAnchor.constraint(equalToConstant: 300)
         ])
-        
     }
 }

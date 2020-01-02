@@ -21,9 +21,8 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.max.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pNk-gW-nMA">
-                                <rect key="frame" x="157" y="134.5" width="100" height="100.5"/>
-                                <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smiley" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pNk-gW-nMA">
+                                <rect key="frame" x="157" y="135.5" width="100" height="99"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Dk6-QB-opn"/>
                                     <constraint firstAttribute="width" constant="100" id="HKJ-ZK-Dl3"/>
@@ -76,6 +75,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sun.max.fill" catalog="system" width="64" height="62"/>
+        <image name="smiley" catalog="system" width="64" height="60"/>
     </resources>
 </document>
