@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct CurrentlyViewModel {
     
@@ -18,7 +19,7 @@ struct CurrentlyViewModel {
     let bag = DisposeBag()
     let iconDictionary: [String: String]
     
-    init(initialCity: City = Store.shared.currentlyCity, initialWeather: Weather = Weather.empty) {
+    init(initialCity: City = City.unknow, initialWeather: Weather = Weather.empty) {
         weather = BehaviorRelay(value: initialWeather)
         city = BehaviorRelay(value: initialCity)
         currentlyWeather = weather.asObservable()
@@ -30,8 +31,6 @@ struct CurrentlyViewModel {
         } else {
             iconDictionary = [:]
         }
-        
-        obserStoreCurrentlyCity()
     }
     
     var name: Observable<String> {
@@ -57,6 +56,28 @@ struct CurrentlyViewModel {
 }
 
 extension CurrentlyViewModel {
+    func refreshCurrentlyCity(latitude: Double, longitude: Double) {
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                self.city.accept(City.unknow)
+                dump(error)
+                return
+            }
+            if let name = placemarks?.first?.locality,
+                let district = placemarks?.first?.subLocality {
+                let newValue = City(name: name,
+                                    district: district,
+                                    latitude: location.coordinate.latitude,
+                                    longitude: location.coordinate.longitude)
+                self.city.accept(newValue)
+            } else {
+                self.city.accept(City.unknow)
+            }
+        }
+    }
+    
     func requestWeatherData(latitude: Double, longitude: Double) {
         let request = WeatherRequest<Weather>(
             location: (latitude: latitude,
@@ -70,15 +91,5 @@ extension CurrentlyViewModel {
                 dump(error)
             }
         }
-    }
-    
-    func obserStoreCurrentlyCity() {
-        NotificationCenter.default
-            .rx
-            .notification(Store.storeChanged)
-            .subscribe(onNext: { _ in
-                self.city.accept(Store.shared.currentlyCity)
-            })
-            .disposed(by: bag)
     }
 }

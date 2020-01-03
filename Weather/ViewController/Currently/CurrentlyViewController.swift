@@ -89,14 +89,14 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
         }
     }
-    // model 持有 City 的请求
+    
     private func requestCityInfo() {
         guard let currentLocation = currentLocation else { return }
         
-        Store.shared.refreshCurrentlyCity(latitude: currentLocation.coordinate.latitude,
-                                          longitude: currentLocation.coordinate.longitude)
+        viewModel.refreshCurrentlyCity(latitude: currentLocation.coordinate.latitude,
+                                       longitude: currentLocation.coordinate.longitude)
     }
-    // 无需存储天气数据，所以 ViewModel 持有 Weather 请求
+    
     private func requestWeatherInfo() {
         guard let currentLocation = currentLocation else { return }
 
