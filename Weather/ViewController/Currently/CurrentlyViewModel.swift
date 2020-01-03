@@ -14,12 +14,24 @@ struct CurrentlyViewModel {
     let city: BehaviorRelay<City>
     private let currentlyWeather: Observable<Weather>
     private let currentlyCity: Observable<City>
-        
-    init(initialCity: City = City.unknow, initialWeather: Weather = Weather.empty) {
+    
+    let bag = DisposeBag()
+    let iconDictionary: [String: String]
+    
+    init(initialCity: City = Store.shared.currentlyCity, initialWeather: Weather = Weather.empty) {
         weather = BehaviorRelay(value: initialWeather)
         city = BehaviorRelay(value: initialCity)
         currentlyWeather = weather.asObservable()
         currentlyCity = city.asObservable()
+                
+        if let path = Bundle.main.path(forResource: "WeatherIcon", ofType: "plist"),
+            let dict = NSDictionary(contentsOfFile: path) as? [String: String] {
+                iconDictionary = dict
+        } else {
+            iconDictionary = [:]
+        }
+        
+        obserStoreCurrentlyCity()
     }
     
     var name: Observable<String> {
@@ -30,8 +42,7 @@ struct CurrentlyViewModel {
     
     var iconImage: Observable<UIImage> {
         return currentlyWeather.map { weather in
-            let iconDictionary = self.iconDictionry()
-            let iconName = iconDictionary[weather.currently.icon] ?? "smiley"
+            let iconName = self.iconDictionary[weather.currently.icon] ?? "smiley"
             return UIImage(systemName: iconName)!
         }
     }
@@ -46,11 +57,28 @@ struct CurrentlyViewModel {
 }
 
 extension CurrentlyViewModel {
-    func iconDictionry() -> [String: String] {
-        if let path = Bundle.main.path(forResource: "WeatherIcon", ofType: "plist"),
-            let dict = NSDictionary(contentsOfFile: path) as? [String: String] {
-                return dict
+    func requestWeatherData(latitude: Double, longitude: Double) {
+        let request = WeatherRequest<Weather>(
+            location: (latitude: latitude,
+                       longitude: longitude)
+        )
+        WeatherClient.shared.send(request) { result in
+            switch result {
+            case .success(let weather):
+                self.weather.accept(weather)
+            case .failure(let error):
+                dump(error)
+            }
         }
-        return [:]
+    }
+    
+    func obserStoreCurrentlyCity() {
+        NotificationCenter.default
+            .rx
+            .notification(Store.storeChanged)
+            .subscribe(onNext: { _ in
+                self.city.accept(Store.shared.currentlyCity)
+            })
+            .disposed(by: bag)
     }
 }

@@ -16,7 +16,7 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
     private var viewModel = CurrentlyViewModel()
     private var currentLocation: CLLocation? {
         didSet {
-            geocodeCityInfo()
+            requestCityInfo()
             requestWeatherInfo()
         }
     }
@@ -32,12 +32,12 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // request location when application active
         view.backgroundColor = UIColor.systemBackground
-        // view
+        // View
         constructSubview()
         activeConstraints()
-        // model
+        // Data
         applicationActiveNotification()
-        // bind
+        // Bind
         bindData()
     }
     
@@ -63,7 +63,7 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
         activeConstraintsCurrentlyView()
     }
     
-    // MARK: - Models
+    // MARK: - Data
     private func applicationActiveNotification() {
         NotificationCenter.default
             .rx
@@ -89,41 +89,19 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
         }
     }
-    
-    private func geocodeCityInfo() {
+    // model 持有 City 的请求
+    private func requestCityInfo() {
         guard let currentLocation = currentLocation else { return }
         
-        CLGeocoder().reverseGeocodeLocation(currentLocation) { (placemarks, error) in
-            if let error = error {
-                dump(error)
-                return
-            }
-            if let name = placemarks?.first?.locality,
-                let district = placemarks?.first?.subLocality {
-                let cityModel = City(name: name,
-                                     district: district,
-                                     latitude: currentLocation.coordinate.latitude,
-                                     longitude: currentLocation.coordinate.longitude)
-                self.viewModel.city.accept(cityModel)
-            }
-        }
+        Store.shared.refreshCurrentlyCity(latitude: currentLocation.coordinate.latitude,
+                                          longitude: currentLocation.coordinate.longitude)
     }
-    
+    // 无需存储天气数据，所以 ViewModel 持有 Weather 请求
     private func requestWeatherInfo() {
         guard let currentLocation = currentLocation else { return }
 
-        let request = WeatherRequest<Weather>(
-            location: (latitude: currentLocation.coordinate.latitude,
-                       longitude: currentLocation.coordinate.longitude)
-        )
-        WeatherClient.shared.send(request) { result in
-            switch result {
-            case .success(let weather):
-                self.viewModel.weather.accept(weather)
-            case .failure(let error):
-                dump(error)
-            }
-        }
+        viewModel.requestWeatherData(latitude: currentLocation.coordinate.latitude,
+                                     longitude: currentLocation.coordinate.longitude)
     }
 }
 
