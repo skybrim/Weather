@@ -16,7 +16,7 @@ protocol WeatherViewControllerDelegate: class {
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: -
     weak var delegate: WeatherViewControllerDelegate?
-
+    private let bag = DisposeBag()
     private var currentlyView = WeatherView()
     private var viewModel = WeatherViewModel()
     private var currentLocation: CLLocation? {
@@ -31,8 +31,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         manager.desiredAccuracy = 1000
         return manager
     }()
-    
-    private let bag = DisposeBag()
     
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {

@@ -37,11 +37,13 @@ final class Store {
     
     func addCity(city: City) {
         storeCities.append(city)
+        save()
     }
     
     func deleteCity(city: City) {
         guard let index = storeCities.firstIndex(of: city) else { return }
         storeCities.remove(at: index)
+        save()
     }
     
     func save() {
