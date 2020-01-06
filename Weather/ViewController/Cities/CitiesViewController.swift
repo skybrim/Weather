@@ -36,11 +36,13 @@ class CitiesViewController: UIViewController {
     
     func bindData() {
         viewModel.titles
-            .bind(to: citieseView.citiesTableView
+            .bind(to:
+                 citieseView.citiesTableView
                 .rx
-                .items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (_, text, cell) in
-                    cell.textLabel?.text = text
-                }
+                .items(cellIdentifier: CitiesView.citiesReuseIdentifier, cellType: UITableViewCell.self)
+            ) { (_, text, cell) in
+                cell.textLabel?.text = text
+            }
             .disposed(by: bag)
     }
     

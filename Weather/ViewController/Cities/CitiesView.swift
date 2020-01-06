@@ -10,6 +10,8 @@ import UIKit
 
 class CitiesView: UIView {
     
+    static let citiesReuseIdentifier = "citiesReuseIdentifier"
+    
     var contentView: UIStackView = {
         let stackView = UIStackView()
         return stackView
@@ -22,6 +24,7 @@ class CitiesView: UIView {
     
     var citiesTableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CitiesView.citiesReuseIdentifier)
         return tableView
     }()
     
