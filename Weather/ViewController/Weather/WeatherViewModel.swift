@@ -1,5 +1,5 @@
 //
-//  CurrentlyViewModel.swift
+//  WeatherViewModel.swift
 //  Weather
 //
 //  Created by wiley on 2020/1/2.
@@ -9,14 +9,13 @@
 import Foundation
 import CoreLocation
 
-struct CurrentlyViewModel {
+struct WeatherViewModel {
     
     let weather: BehaviorRelay<Weather>
     let city: BehaviorRelay<City>
     private let currentlyWeather: Observable<Weather>
     private let currentlyCity: Observable<City>
     
-    let bag = DisposeBag()
     let iconDictionary: [String: String]
     
     init(initialCity: City = City.unknow, initialWeather: Weather = Weather.empty) {
@@ -55,7 +54,7 @@ struct CurrentlyViewModel {
     }
 }
 
-extension CurrentlyViewModel {
+extension WeatherViewModel {
     func refreshCurrentlyCity(latitude: Double, longitude: Double) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         

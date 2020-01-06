@@ -1,5 +1,5 @@
 //
-//  CurrentlyViewController.swift
+//  WeatherViewController.swift
 //  Weather
 //
 //  Created by wiley on 2019/12/27.
@@ -9,11 +9,10 @@
 import UIKit
 import CoreLocation
 
-class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
+class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: -
-    private let bag = DisposeBag()
-    private var currentlyView = CurrentlyView()
-    private var viewModel = CurrentlyViewModel()
+    private var currentlyView = WeatherView()
+    private var viewModel = WeatherViewModel()
     private var currentLocation: CLLocation? {
         didSet {
             requestCityInfo()
@@ -26,6 +25,8 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
         manager.desiredAccuracy = 1000
         return manager
     }()
+    
+    private let bag = DisposeBag()
     
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
@@ -64,6 +65,7 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // MARK: - Data
+    // application active, get currently location
     private func applicationActiveNotification() {
         NotificationCenter.default
             .rx
@@ -105,7 +107,7 @@ class CurrentlyViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
-extension CurrentlyViewController {
+extension WeatherViewController {
     func activeConstraintsCurrentlyView() {
         currentlyView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

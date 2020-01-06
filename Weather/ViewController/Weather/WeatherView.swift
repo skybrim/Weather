@@ -1,5 +1,5 @@
 //
-//  CurrentlyView.swift
+//  WeatherView.swift
 //  Weather
 //
 //  Created by wiley on 2019/12/30.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrentlyView: UIView {
+class WeatherView: UIView {
     
     var cityLabel: UILabel = {
         let label = UILabel()
@@ -50,7 +50,7 @@ class CurrentlyView: UIView {
     }
 }
 
-extension CurrentlyView {
+extension WeatherView {
     func activeConstraintsCityLabel() {
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint
