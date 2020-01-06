@@ -9,11 +9,18 @@
 import Foundation
 
 struct City: Codable {
-
+    
+    let cityID = UUID()
     var name: String
     var district: String?
     var latitude: Double
     var longitude: Double
 
     static let unknow = City(name: " _ ", district: " _ ", latitude: 0, longitude: 0)
+}
+
+extension City: Equatable {
+    public static func == (lhs: City, rhs: City) -> Bool {
+        return lhs.cityID == rhs.cityID
+    }
 }

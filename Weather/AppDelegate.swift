@@ -15,17 +15,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var coordinator: Coordinator?
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         // Override point for customization after application launch.
+        
+        let root = WeatherViewController()
+        coordinator = Coordinator(root: root)
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = WeatherViewController()
+        window?.rootViewController = root
         window?.makeKeyAndVisible()
-
+        
         return true
     }
 }

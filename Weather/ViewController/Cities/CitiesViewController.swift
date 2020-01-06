@@ -8,11 +8,24 @@
 
 import UIKit
 
-class CitiesViewController: UIViewController {
+protocol CitiesViewControllerDelegate: class {
+    func chooseCity(_ city: City)
+}
 
+class CitiesViewController: UIViewController {
+    // MARK: -
+    weak var delegate: CitiesViewControllerDelegate?
+
+    // MARK: - ViewController Lifecycle
+    convenience init(delegate: CitiesViewControllerDelegate) {
+        self.init()
+        self.delegate = delegate
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
     }
 }

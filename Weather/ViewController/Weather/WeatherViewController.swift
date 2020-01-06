@@ -9,8 +9,14 @@
 import UIKit
 import CoreLocation
 
+protocol WeatherViewControllerDelegate: class {
+    func jumpCities()
+}
+
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: -
+    weak var delegate: WeatherViewControllerDelegate?
+
     private var currentlyView = WeatherView()
     private var viewModel = WeatherViewModel()
     private var currentLocation: CLLocation? {
@@ -36,6 +42,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         // View
         constructSubview()
         activeConstraints()
+        setTargetAction()
         // Data
         applicationActiveNotification()
         // Bind
@@ -62,6 +69,16 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     func activeConstraints() {
         activeConstraintsCurrentlyView()
+    }
+    
+    func setTargetAction() {
+        currentlyView.chooseButton
+            .rx
+            .tap
+            .subscribe(onNext: { [weak self] in
+                self?.delegate?.jumpCities()
+            })
+            .disposed(by: bag)
     }
     
     // MARK: - Data

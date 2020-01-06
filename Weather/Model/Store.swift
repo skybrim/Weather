@@ -19,7 +19,10 @@ final class Store {
     
     let baseURL: URL?
     private(set) var storeCities: [City]
-
+    var count: Int {
+        return storeCities.count
+    }
+    
     private init(url: URL?) {
         baseURL = url
         
@@ -32,12 +35,13 @@ final class Store {
         }
     }
     
-    func addCity() {
-        
+    func addCity(city: City) {
+        storeCities.append(city)
     }
     
-    func deleteCity() {
-        
+    func deleteCity(city: City) {
+        guard let index = storeCities.firstIndex(of: city) else { return }
+        storeCities.remove(at: index)
     }
     
     func save() {
