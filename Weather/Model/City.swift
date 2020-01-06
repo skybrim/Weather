@@ -17,6 +17,9 @@ struct City: Codable {
     var longitude: Double
 
     static let unknow = City(name: " _ ", district: " _ ", latitude: 0, longitude: 0)
+    
+    static let test = City(name: "test", district: " _ ", latitude: 0, longitude: 0)
+
 }
 
 extension City: Equatable {

@@ -43,6 +43,7 @@
 		B868D22D23B5B66200902BBD /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D22C23B5B66200902BBD /* Client.swift */; };
 		B884737223BA5388002868E0 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B884737123BA5388002868E0 /* WeatherView.swift */; };
 		B8873FEE23C305A700BD9C88 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8873FED23C305A700BD9C88 /* Coordinator.swift */; };
+		B8873FF023C3161800BD9C88 /* CitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8873FEF23C3161800BD9C88 /* CitiesView.swift */; };
 		B8CA8BC923B998220035E92A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA8BC823B998220035E92A /* Color.swift */; };
 		B8CA8BCB23B9982D0035E92A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA8BCA23B9982D0035E92A /* Font.swift */; };
 		B8CA8BCD23B9D6340035E92A /* WeatherIcon.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8CA8BCC23B9D6340035E92A /* WeatherIcon.plist */; };
@@ -150,6 +151,7 @@
 		B868D22C23B5B66200902BBD /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		B884737123BA5388002868E0 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		B8873FED23C305A700BD9C88 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		B8873FEF23C3161800BD9C88 /* CitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesView.swift; sourceTree = "<group>"; };
 		B8CA8BC823B998220035E92A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B8CA8BCA23B9982D0035E92A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		B8CA8BCC23B9D6340035E92A /* WeatherIcon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WeatherIcon.plist; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				B85869D323BF3575004FD647 /* CitiesViewController.swift */,
+				B8873FEF23C3161800BD9C88 /* CitiesView.swift */,
 				B85869D523BF359C004FD647 /* CitiesViewModel.swift */,
 			);
 			path = Cities;
@@ -847,6 +850,7 @@
 				B827C5DB23BB23DA002C7934 /* Double+Additions.swift in Sources */,
 				B8873FEE23C305A700BD9C88 /* Coordinator.swift in Sources */,
 				B85869D123BF1829004FD647 /* Store.swift in Sources */,
+				B8873FF023C3161800BD9C88 /* CitiesView.swift in Sources */,
 				B8CA8BCB23B9982D0035E92A /* Font.swift in Sources */,
 				B83AADEA23BDD03F009F7B95 /* WeatherViewModel.swift in Sources */,
 				B868D1BF23B5987C00902BBD /* AppDelegate.swift in Sources */,

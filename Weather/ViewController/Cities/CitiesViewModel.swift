@@ -15,7 +15,8 @@ class CitiesViewModel {
     private let storeCities: Observable<[City]>
     
     init(initialCities: [City] = Store.shared.storeCities) {
-        cities = BehaviorRelay(value: initialCities)
+//        cities = BehaviorRelay(value: initialCities)
+        cities = BehaviorRelay(value: [City.test, City.test])
         storeCities = cities.asObservable()
         
         obserNotification()
@@ -37,5 +38,9 @@ class CitiesViewModel {
     
     func deleteCity(_ city: City) {
         Store.shared.deleteCity(city: city)
+    }
+    
+    var titles: Observable<[String]> {
+        return Observable.from(optional: cities.value.map { $0.name })
     }
 }

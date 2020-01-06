@@ -15,7 +15,10 @@ protocol CitiesViewControllerDelegate: class {
 class CitiesViewController: UIViewController {
     // MARK: -
     weak var delegate: CitiesViewControllerDelegate?
-
+    private let bag = DisposeBag()
+    private var citieseView = CitiesView()
+    private var viewModel = CitiesViewModel()
+    
     // MARK: - ViewController Lifecycle
     convenience init(delegate: CitiesViewControllerDelegate) {
         self.init()
@@ -24,8 +27,40 @@ class CitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // View
+        constructSubview()
+        activeConstraints()
+        // Bind
+        bindData()
+    }
+    
+    func bindData() {
+        viewModel.titles
+            .bind(to: citieseView.citiesTableView
+                .rx
+                .items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (_, text, cell) in
+                    cell.textLabel?.text = text
+                }
+            .disposed(by: bag)
+    }
+    
+    func constructSubview() {
+        view.addSubview(citieseView)
+    }
+    
+    func activeConstraints() {
+        activeConstraintsCitiesTableView()
+    }
+}
 
-        // Do any additional setup after loading the view.
-        
+extension CitiesViewController {
+    func activeConstraintsCitiesTableView() {
+        citieseView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            citieseView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            citieseView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            citieseView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            citieseView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
