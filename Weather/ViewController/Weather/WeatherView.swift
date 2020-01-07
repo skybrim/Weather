@@ -60,8 +60,7 @@ class WeatherView: UIView {
 extension WeatherView {
     func activeConstraintsCityLabel() {
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint
-        .activate([
+        NSLayoutConstraint.activate([
             cityLabel.topAnchor.constraint(equalTo: self.topAnchor),
             cityLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
@@ -69,8 +68,7 @@ extension WeatherView {
 
     func activeConstraintsChooseButton() {
         chooseButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint
-        .activate([
+        NSLayoutConstraint.activate([
             chooseButton.heightAnchor.constraint(equalToConstant: 44),
             chooseButton.widthAnchor.constraint(equalToConstant: 44),
             chooseButton.topAnchor.constraint(equalTo: self.topAnchor),
@@ -81,8 +79,7 @@ extension WeatherView {
     
     func activeConstraintsIconImageView() {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint
-        .activate([
+        NSLayoutConstraint.activate([
             iconImageView.heightAnchor.constraint(equalToConstant: 100),
             iconImageView.widthAnchor.constraint(equalToConstant: 100),
             iconImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -92,8 +89,7 @@ extension WeatherView {
 
     func activeConstraintsTimeLabel() {
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint
-        .activate([
+        NSLayoutConstraint.activate([
             timeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             timeLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])

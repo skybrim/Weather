@@ -43,4 +43,6 @@ class CitiesViewModel {
     var titles: Observable<[String]> {
         return Observable.from(optional: cities.value.map { $0.name })
     }
+    
+    var searchText: ControlProperty<String?>?
 }

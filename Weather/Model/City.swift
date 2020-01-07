@@ -10,7 +10,6 @@ import Foundation
 
 struct City: Codable {
     
-    let cityID = UUID()
     var name: String
     var district: String?
     var latitude: Double
@@ -24,6 +23,6 @@ struct City: Codable {
 
 extension City: Equatable {
     public static func == (lhs: City, rhs: City) -> Bool {
-        return lhs.cityID == rhs.cityID
+        return lhs.name == rhs.name
     }
 }

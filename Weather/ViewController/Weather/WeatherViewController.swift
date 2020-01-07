@@ -70,6 +70,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func setTargetAction() {
+        chooseButtonSetTargetAction()
+    }
+    
+    func chooseButtonSetTargetAction() {
         currentlyView.chooseButton
             .rx
             .tap

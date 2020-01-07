@@ -10,6 +10,7 @@ import UIKit
 
 final class Coordinator {
     let rootVC: UIViewController
+    var citiesNavgationController: UINavigationController!
     
     init(root: UIViewController) {
         rootVC = root
@@ -22,13 +23,8 @@ final class Coordinator {
 
 extension Coordinator: WeatherViewControllerDelegate {
     func jumpCities() {
-        let citiesVC = CitiesViewController(delegate: self)
-        rootVC.present(citiesVC, animated: true)
-    }
-}
-
-extension Coordinator: CitiesViewControllerDelegate {
-    func chooseCity(_ city: City) {
-        
+        let citiesVC = CitiesViewController()
+        citiesNavgationController = UINavigationController(rootViewController: citiesVC)
+        rootVC.present(citiesNavgationController, animated: true)
     }
 }

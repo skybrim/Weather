@@ -8,28 +8,19 @@
 
 import UIKit
 
-protocol CitiesViewControllerDelegate: class {
-    func chooseCity(_ city: City)
-}
-
 class CitiesViewController: UIViewController {
     // MARK: -
-    weak var delegate: CitiesViewControllerDelegate?
     private let bag = DisposeBag()
     private var citieseView = CitiesView()
     private var viewModel = CitiesViewModel()
     
     // MARK: - ViewController Lifecycle
-    convenience init(delegate: CitiesViewControllerDelegate) {
-        self.init()
-        self.delegate = delegate
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // View
         constructSubview()
         activeConstraints()
+        setTargetAction()
         // Bind
         bindData()
     }
@@ -52,6 +43,36 @@ class CitiesViewController: UIViewController {
     
     func activeConstraints() {
         activeConstraintsCitiesTableView()
+    }
+    
+    func setTargetAction() {
+        doneSetTargetAction()
+        addSetTargetAction()
+    }
+    
+    func doneSetTargetAction() {
+        let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
+                                                target: nil, action: nil)
+        doneBarButtonItem.rx
+            .tap
+            .subscribe(onNext: { [weak self] in
+                self?.navigationController?.dismiss(animated: true)
+            })
+            .disposed(by: bag)
+        navigationItem.rightBarButtonItem = doneBarButtonItem
+    }
+    
+    func addSetTargetAction() {
+        let addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                               target: nil, action: nil)
+        addBarButtonItem.rx
+            .tap
+            .subscribe(onNext: { [weak self] in
+                self?.navigationController?
+                    .pushViewController(AddCityViewController(), animated: true)
+            })
+            .disposed(by: bag)
+        navigationItem.leftBarButtonItem = addBarButtonItem
     }
 }
 
