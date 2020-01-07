@@ -14,6 +14,10 @@ class CitiesView: UIView {
     
     var contentView: UIStackView = {
         let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        stackView.distribution = .fill
+        stackView.alignment = .fill
         return stackView
     }()
     
@@ -37,26 +41,25 @@ class CitiesView: UIView {
     }
     
     func constructSubview() {
+        contentView.addArrangedSubview(searchBar)
+        contentView.addArrangedSubview(citiesTableView)
         addSubview(contentView)
     }
     
     func activeConstraints() {
         activeConstraintsContentView()
-        activeConstraintsSearchBar()
-        activeConstraintsCitiesTableView()
     }
 }
 
 extension CitiesView {
     func activeConstraintsContentView() {
-        
-    }
-    
-    func activeConstraintsSearchBar() {
-        
-    }
-    
-    func activeConstraintsCitiesTableView() {
-        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint
+        .activate([
+            contentView.topAnchor.constraint(equalTo: self.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
 }
