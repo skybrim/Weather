@@ -11,13 +11,12 @@ import Foundation
 struct City: Codable {
     
     var name: String
-    var district: String?
     var latitude: Double
     var longitude: Double
 
-    static let unknow = City(name: " _ ", district: " _ ", latitude: 0, longitude: 0)
+    static let unknow = City(name: " _ ", latitude: 0, longitude: 0)
     
-    static let test = City(name: "test", district: " _ ", latitude: 0, longitude: 0)
+    static let test = City(name: "test", latitude: 0, longitude: 0)
 
 }
 

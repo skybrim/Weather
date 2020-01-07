@@ -16,9 +16,9 @@ protocol WeatherViewControllerDelegate: class {
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: -
     weak var delegate: WeatherViewControllerDelegate?
+    var viewModel = WeatherViewModel()
     private let bag = DisposeBag()
     private var currentlyView = WeatherView()
-    private var viewModel = WeatherViewModel()
     private var currentLocation: CLLocation? {
         didSet {
             requestCityInfo()
@@ -49,11 +49,19 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - bind
     func bindData() {
+        viewModel.location
+            .subscribe(onNext: { _ in
+                /// WARNING
+            })
+            .disposed(by: bag)
         viewModel.name
             .bind(to: currentlyView.cityLabel.rx.text)
             .disposed(by: bag)
         viewModel.iconImage
             .bind(to: currentlyView.iconImageView.rx.image)
+            .disposed(by: bag)
+        viewModel.temperature
+            .bind(to: currentlyView.temperatureLabel.rx.text)
             .disposed(by: bag)
         viewModel.time
             .bind(to: currentlyView.timeLabel.rx.text)

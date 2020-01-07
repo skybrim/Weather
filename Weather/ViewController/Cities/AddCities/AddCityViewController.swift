@@ -29,7 +29,15 @@ class AddCityViewController: UIViewController {
     }
     
     func bindData() {
-        
+        viewModel.titles
+            .bind(to: addCityView
+                .citiesTableView
+                .rx
+                .items(cellIdentifier: AddCityView.addCityReuseIdentifier)
+            ) { (_, title, cell) in
+                cell.textLabel?.text = title
+            }
+            .disposed(by: bag)
     }
     
     func constructSubview() {
@@ -41,6 +49,29 @@ class AddCityViewController: UIViewController {
     }
     
     func setTargetAction() {
+        searchBarSetTargetAction()
+        tableViewSelected()
+    }
+    
+    func searchBarSetTargetAction() {
+        addCityView.searchBar
+            .rx
+            .searchButtonClicked
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.queryText = self?.addCityView.searchBar.text
+            })
+            .disposed(by: bag)
+    }
+    
+    func tableViewSelected() {
+        addCityView.citiesTableView
+            .rx
+            .itemSelected
+            .subscribe(onNext: { [weak self] index in
+                self?.viewModel.addCity(index.row)
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
         
     }
 }

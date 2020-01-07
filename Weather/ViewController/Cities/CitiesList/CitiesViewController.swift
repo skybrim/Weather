@@ -8,13 +8,23 @@
 
 import UIKit
 
+protocol CitiesViewControllerDelegate: class {
+    func chooseCity(_ city: City)
+}
+
 class CitiesViewController: UIViewController {
     // MARK: -
+    weak var delegate: CitiesViewControllerDelegate?
     private let bag = DisposeBag()
     private var citieseView = CitiesView()
     private var viewModel = CitiesViewModel()
     
     // MARK: - ViewController Lifecycle
+    convenience init(delegate: CitiesViewControllerDelegate) {
+        self.init()
+        self.delegate = delegate
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // View
@@ -31,8 +41,8 @@ class CitiesViewController: UIViewController {
                  citieseView.citiesTableView
                 .rx
                 .items(cellIdentifier: CitiesView.citiesReuseIdentifier, cellType: UITableViewCell.self)
-            ) { (_, text, cell) in
-                cell.textLabel?.text = text
+            ) { (_, title, cell) in
+                cell.textLabel?.text = title
             }
             .disposed(by: bag)
     }
@@ -48,6 +58,7 @@ class CitiesViewController: UIViewController {
     func setTargetAction() {
         doneSetTargetAction()
         addSetTargetAction()
+        tableViewSelected()
     }
     
     func doneSetTargetAction() {
@@ -73,6 +84,18 @@ class CitiesViewController: UIViewController {
             })
             .disposed(by: bag)
         navigationItem.leftBarButtonItem = addBarButtonItem
+    }
+    
+    func tableViewSelected() {
+        citieseView.citiesTableView
+            .rx
+            .itemSelected
+            .subscribe(onNext: { [weak self] index in
+                if let city = self?.viewModel.cities.value[index.row] {
+                    self?.delegate?.chooseCity(city)
+                }
+            })
+            .disposed(by: bag)
     }
 }
 

@@ -15,9 +15,8 @@ class CitiesViewModel {
     private let storeCities: Observable<[City]>
     
     init(initialCities: [City] = Store.shared.storeCities) {
-//        cities = BehaviorRelay(value: initialCities)
-        cities = BehaviorRelay(value: [City.test, City.test])
-        storeCities = cities.asObservable()
+        cities = BehaviorRelay(value: initialCities)
+        storeCities = cities.asObservable().share(replay: 1)
         
         obserNotification()
     }
@@ -32,16 +31,14 @@ class CitiesViewModel {
             .disposed(by: bag)
     }
     
-    func addCity(_ city: City) {
-        Store.shared.addCity(city: city)
-    }
-    
     func deleteCity(_ city: City) {
         Store.shared.deleteCity(city: city)
     }
     
     var titles: Observable<[String]> {
-        return Observable.from(optional: cities.value.map { $0.name })
+        return storeCities.map {
+            return $0.map { $0.name }
+        }
     }
     
     var searchText: ControlProperty<String?>?

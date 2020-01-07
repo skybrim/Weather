@@ -26,6 +26,12 @@ class WeatherView: UIView {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
+    var temperatureLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.textColor = UIColor.label
+        return label
+    }()
     var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title1)
@@ -45,15 +51,17 @@ class WeatherView: UIView {
     func constructSubview() {
         addSubview(cityLabel)
         addSubview(iconImageView)
+        addSubview(temperatureLabel)
         addSubview(timeLabel)
         addSubview(chooseButton)
     }
     
     func activeConstraints() {
         activeConstraintsCityLabel()
+        activeConstraintsChooseButton()
         activeConstraintsIconImageView()
         activeConstraintsTimeLabel()
-        activeConstraintsChooseButton()
+        activeConstraintsTemperatureLabel()
     }
 }
 
@@ -92,6 +100,14 @@ extension WeatherView {
         NSLayoutConstraint.activate([
             timeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             timeLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+    }
+    
+    func activeConstraintsTemperatureLabel() {
+        temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            temperatureLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            temperatureLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20)
         ])
     }
 }

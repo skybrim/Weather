@@ -22,7 +22,7 @@ struct WeatherViewModel {
         weather = BehaviorRelay(value: initialWeather)
         city = BehaviorRelay(value: initialCity)
         currentlyWeather = weather.asObservable()
-        currentlyCity = city.asObservable()
+        currentlyCity = city.asObservable().share(replay: 1)
                 
         if let path = Bundle.main.path(forResource: "WeatherIcon", ofType: "plist"),
             let dict = NSDictionary(contentsOfFile: path) as? [String: String] {
@@ -34,7 +34,7 @@ struct WeatherViewModel {
     
     var name: Observable<String> {
         return currentlyCity.map {
-            return $0.name + ($0.district ?? "")
+            return $0.name
         }
     }
     
@@ -52,6 +52,18 @@ struct WeatherViewModel {
             return formatter.string(from: $0.currently.time)
         }
     }
+    
+    var temperature: Observable<String> {
+        return currentlyWeather.map {
+            return String($0.currently.temperature.toCelsius()) + "℃"
+        }
+    }
+    
+    var location: Observable<CLLocation?> {
+        return currentlyCity.map {
+            return CLLocation(latitude: $0.latitude, longitude: $0.longitude)
+        }
+    }
 }
 
 extension WeatherViewModel {
@@ -64,10 +76,20 @@ extension WeatherViewModel {
                 dump(error)
                 return
             }
-            if let name = placemarks?.first?.locality,
-                let district = placemarks?.first?.subLocality {
+            var name = ""
+            if let province = placemarks?.first?.administrativeArea,
+                let subLocality = placemarks?.first?.subLocality {
+                name = province + subLocality
+            }
+            if let locality = placemarks?.first?.locality {
+                name = locality
+            }
+            if let locality = placemarks?.first?.locality,
+                let subLocality = placemarks?.first?.subLocality {
+                name = locality + subLocality
+            }
+            if name.count > 0 {
                 let newValue = City(name: name,
-                                    district: district,
                                     latitude: location.coordinate.latitude,
                                     longitude: location.coordinate.longitude)
                 self.city.accept(newValue)

@@ -36,6 +36,9 @@ final class Store {
     }
     
     func addCity(city: City) {
+        if storeCities.contains(city) {
+            return
+        }
         storeCities.append(city)
         save()
     }
