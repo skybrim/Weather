@@ -12,6 +12,7 @@
 		0CC89A30F24C252306C4826B /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 335BF71906766704C8233F77 /* Pods_Weather.framework */; };
 		65043637CA08E747E359DCF9 /* Pods_Util.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3755CB9F8DB3F5C3AF3DE49E /* Pods_Util.framework */; };
 		7E443F49B9D694292A7DAC02 /* Pods_Util_UtilTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A5A74BC3FB346439C8AA3A /* Pods_Util_UtilTests.framework */; };
+		B81089FF23C57A9C00A87303 /* Double+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81089FE23C57A9C00A87303 /* Double+Addition.swift */; };
 		B827C5DB23BB23DA002C7934 /* Double+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B827C5DA23BB23DA002C7934 /* Double+Additions.swift */; };
 		B836450323B5F8A500941F0D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B836450223B5F8A500941F0D /* City.swift */; };
 		B83AADEA23BDD03F009F7B95 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AADE923BDD03F009F7B95 /* WeatherViewModel.swift */; };
@@ -115,6 +116,7 @@
 		56774A53479D1F397F476D8A /* Pods_Weather_WeatherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_WeatherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D6819DD87613C60911134F /* Pods-Util-UtilTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Util-UtilTests.debug.xcconfig"; path = "Target Support Files/Pods-Util-UtilTests/Pods-Util-UtilTests.debug.xcconfig"; sourceTree = "<group>"; };
 		798069AEB36F4F7AF8AD067E /* Pods-Weather-WeatherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-WeatherUITests.debug.xcconfig"; path = "Target Support Files/Pods-Weather-WeatherUITests/Pods-Weather-WeatherUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B81089FE23C57A9C00A87303 /* Double+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Addition.swift"; sourceTree = "<group>"; };
 		B827C5DA23BB23DA002C7934 /* Double+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Additions.swift"; sourceTree = "<group>"; };
 		B83644FA23B5F6AA00941F0D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B836450223B5F8A500941F0D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				B868D21523B5A10200902BBD /* String+Additions.swift */,
 				B868D21623B5A10200902BBD /* Dictionary+Additions.swift */,
 				B868D21723B5A10200902BBD /* Sequence+Additions.swift */,
+				B81089FE23C57A9C00A87303 /* Double+Addition.swift */,
 			);
 			path = "Foundation+Extension";
 			sourceTree = "<group>";
@@ -911,6 +914,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B868D21C23B5A10200902BBD /* Kit.swift in Sources */,
+				B81089FF23C57A9C00A87303 /* Double+Addition.swift in Sources */,
 				B868D22023B5A10200902BBD /* Sequence+Additions.swift in Sources */,
 				B868D21F23B5A10200902BBD /* Dictionary+Additions.swift in Sources */,
 				B868D22323B5A10200902BBD /* RequestProtocol.swift in Sources */,
