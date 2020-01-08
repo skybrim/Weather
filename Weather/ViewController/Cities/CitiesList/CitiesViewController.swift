@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol CitiesViewControllerDelegate: class {
-    func chooseCity(_ city: City)
+    func chooseLocation(_ location: CLLocation)
 }
 
 class CitiesViewController: UIViewController {
@@ -92,7 +93,8 @@ class CitiesViewController: UIViewController {
             .itemSelected
             .subscribe(onNext: { [weak self] index in
                 if let city = self?.viewModel.cities.value[index.row] {
-                    self?.delegate?.chooseCity(city)
+                    self?.delegate?
+                        .chooseLocation(CLLocation(latitude: city.latitude, longitude: city.longitude))
                 }
             })
             .disposed(by: bag)

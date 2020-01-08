@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class Coordinator {
     let rootVC: UIViewController
@@ -30,9 +31,9 @@ extension Coordinator: WeatherViewControllerDelegate {
 }
 
 extension Coordinator: CitiesViewControllerDelegate {
-    func chooseCity(_ city: City) {
+    func chooseLocation(_ location: CLLocation) {
         if let rootVC = rootVC as? WeatherViewController {
-            rootVC.viewModel.city.accept(city)
+            rootVC.currentLocation = location
         }
         citiesNavgationController.dismiss(animated: true)
     }

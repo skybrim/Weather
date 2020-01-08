@@ -49,19 +49,19 @@ struct WeatherViewModel {
         return currentlyWeather.map {
             let formatter = DateFormatter()
             formatter.dateFormat = "E, dd MMMM"
-            return formatter.string(from: $0.currently.time)
+            if let date = $0.currently.time {
+                return formatter.string(from: date)
+            }
+            return "_ _ _ _ _ _"
         }
     }
     
     var temperature: Observable<String> {
         return currentlyWeather.map {
-            return String($0.currently.temperature.toCelsius()) + "℃"
-        }
-    }
-    
-    var location: Observable<CLLocation?> {
-        return currentlyCity.map {
-            return CLLocation(latitude: $0.latitude, longitude: $0.longitude)
+            if let temp = $0.currently.temperature {
+                return String(temp.toCelsius()) + "℃"
+            }
+            return ""
         }
     }
 }
