@@ -5,5 +5,6 @@
 * TODO:
   - [x] MVVM
   - [x] RxSwift
+  - [ ] iCloud sync
   - [ ] Unit test
 
